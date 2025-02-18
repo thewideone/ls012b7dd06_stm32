@@ -17,7 +17,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-//#include <ls012b7dd06_ospi.h~>
 #include "main.h"
 #include "gpdma.h"
 #include "icache.h"
@@ -48,28 +47,16 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
-//#define LCD_WIDTH 240
-//#define LCD_HEIGHT 240
-
-//#define LCD_RGB_TRAILING_DUMMY_CYCLES 2
-//#define OUT_DATA_BUF_LINE_W ( RLCD_DISP_W/2 + RGB_CLK_TRAILING_DUMMY_PERIOD_CNT )
-//#define OUT_DATA_BUF_SIZE ( RLCD_DISP_H*2 * OUT_DATA_BUF_LINE_W )
-
-//#define OUT_DATA_BUF_SIZE 120+2	// 2 dummy cycles at the end
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
 
-//OSPI_RegularCmdTypeDef ospi_cmd;
 uint8_t lcd_buf_1[OUT_DATA_BUF_SIZE] = {0};
 
 char uart_msg_buf[256] = "No error.\r\n";
 char hal_status_str[4][12] = {"HAL_OK\0", "HAL_ERROR\0", "HAL_BUSY\0", "HAL_TIMEOUT\0"};
-
-//uint8_t lcd_buf_1[OUT_DATA_BUF_SIZE] = {0};
 
 /* USER CODE END PV */
 
@@ -77,17 +64,7 @@ char hal_status_str[4][12] = {"HAL_OK\0", "HAL_ERROR\0", "HAL_BUSY\0", "HAL_TIME
 void SystemClock_Config(void);
 static void SystemPower_Config(void);
 /* USER CODE BEGIN PFP */
-//void display_frame( void );
-//void lcd_cls( void );
-//void lcd_setColour( lcd_colour_t colour );
-//void lcd_setPixel( uint16_t x, uint16_t y, lcd_colour_t colour );
-//void lcd_drawSquare( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, lcd_colour_t colour );
-//void lcd_drawTestFigure( void );
 
-//void lcd_OSPI_TxCpltCallback(OSPI_HandleTypeDef *hospi);
-//void lcd_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);				// TIM6
-//void lcd_TIM_PWM_PulseFinishedCallback_GSP(TIM_HandleTypeDef *htim);		// TIM1
-//void lcd_TIM_PWM_PulseFinishedCallback_halfline(TIM_HandleTypeDef *htim);	// TIM15
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -150,11 +127,6 @@ int main(void)
 
   LCD_init(0, &lcd_init);
   LCD_setActive(0);
-//  lcd_init(&hospi1, &htim15, &htim6, &htim1, &htim16, LCD_INTB_GPIO_Port, LCD_INTB_Pin);
-//  HAL_OSPI_RegisterCallback(&hospi1, HAL_OSPI_TX_CPLT_CB_ID, lcd_OSPI_TxCpltCallback);
-//  HAL_TIM_RegisterCallback(&htim6, HAL_TIM_PERIOD_ELAPSED_CB_ID, lcd_TIM_PeriodElapsedCallback);
-//  HAL_TIM_RegisterCallback(&htim1, HAL_TIM_PWM_PULSE_FINISHED_CB_ID, lcd_TIM_PWM_PulseFinishedCallback_GSP);
-//  HAL_TIM_RegisterCallback(&htim15, HAL_TIM_PWM_PULSE_FINISHED_CB_ID, lcd_TIM_PWM_PulseFinishedCallback_halfline);
 
   sprintf( uart_msg_buf, "OSPI after init status = 0x%08lX, OSPI error code = 0x%08lX\r\n",
   	  			hospi1.State, hospi1.ErrorCode );
