@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# CubeIDE
+Debug/
+Release/
+!Release/lcd_octo_spi.elf
+auxiliary/
+
+# Author's private repo of this project
+.git_priv_repo/
