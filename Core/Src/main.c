@@ -114,6 +114,7 @@ int main(void)
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_StatusTypeDef lcd_status;
   lcd_init_t lcd_init = {
 		  .hospi = &hospi1,
 		  .hhalfline_tim = &htim15,
@@ -143,7 +144,9 @@ int main(void)
 
   // Init frame
   LCD_cls();
-  LCD_displayFrame();
+  // LCD should not be busy yet,
+  // so result checking can be avoided
+  (void) LCD_displayFrame();
 
   HAL_Delay(50);
 
@@ -151,8 +154,24 @@ int main(void)
 
   HAL_Delay(1000);
 
+  // Draw a test figure
   LCD_drawTestFigure();
-  LCD_displayFrame();
+
+  do {
+	  lcd_status = LCD_displayFrame();
+	  HAL_Delay(1);
+  } while (lcd_status != HAL_OK);
+
+  // Draw only a white square
+  LCD_cls();
+  lcd_colour_t colour;
+  colour.val = COLOUR_WHITE;
+  LCD_drawSquare(60, 60, 140, 140, colour);
+
+  do {
+  	  lcd_status = LCD_displayFrame();
+  	  HAL_Delay(1);
+  } while (lcd_status != HAL_OK);
 
   HAL_Delay(10000);
 
