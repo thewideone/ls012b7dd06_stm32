@@ -162,18 +162,21 @@ int main(void)
 	  HAL_Delay(1);
   } while (lcd_status != HAL_OK);
 
-  // Draw only a white square
+  HAL_Delay(5000);
+
+  // Draw only a white square or line
   LCD_cls();
   lcd_colour_t colour;
   colour.val = COLOUR_WHITE;
-  LCD_drawSquare(60, 60, 140, 140, colour);
+//  LCD_drawSquare(60, 60, 140, 140, colour);
+  LCD_drawLine(60, 60, 143, 167, colour);
 
   do {
   	  lcd_status = LCD_displayFrame();
   	  HAL_Delay(1);
   } while (lcd_status != HAL_OK);
 
-  HAL_Delay(10000);
+  HAL_Delay(5000);
 
   // Shutdown frame
   LCD_cls();
