@@ -1,5 +1,5 @@
-# LS012B7DD06 with STM32 user program example
-Example user program showing the use of my LS012B7DD06 driver for STM32.
+# STM32 user program example for the LS012B7DD06 reflective LCD driver
+Example user program showing the use of my LS012B7DD06 driver for STM32 available at [this repo](https://github.com/thewideone/ls012b7dd06_stm32).
 The code needs a clean-up, but provides a working example. This description will be updated in the future.
 
 LCD_displayFrame() in ls012b7dd06.c has a bit of info of how certain peripherals cooperate with each other to send a single image frame.
